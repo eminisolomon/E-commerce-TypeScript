@@ -1,0 +1,73 @@
+{
+  "name": "ecommerce-mongo-swagger",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "watch": "tsc -w",
+    "dev": "nodemon",
+    "start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/app.js",
+    "build": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./ -o ./dist",
+    "build:lib": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SirhmVFX/BarkAndSaw.git"
+  },
+  "keywords": [],
+  "author": "Solomon Olatunji",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SirhmVFX/BarkAndSaw/issues"
+  },
+  "homepage": "https://github.com/SirhmVFX/BarkAndSaw#readme",
+  "dependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/swagger-jsdoc": "^6.0.1",
+    "api": "^5.0.8",
+    "autoprefixer": "^10.4.14",
+    "aws-sdk": "^2.1167.0",
+    "axios": "^1.3.4",
+    "bcrypt": "^5.0.1",
+    "chalk": "^4.1.2",
+    "cloudinary": "^1.35.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.2",
+    "express-validator": "^6.14.2",
+    "fs": "^0.0.1-security",
+    "jimp": "^0.22.8",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^9.0.0",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.3",
+    "mongoose": "^6.4.4",
+    "mongoose-paginate-v2": "^1.7.1",
+    "multer": "^1.4.5-lts.1",
+    "multer-s3": "^3.0.1",
+    "nodemailer": "^6.7.5",
+    "nodemon": "^2.0.22",
+    "path": "^0.12.7",
+    "qrcode": "^1.5.3",
+    "qrcode-reader": "^1.0.4",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^4.6.2",
+    "tronweb": "^5.2.0",
+    "ts-node": "^10.8.2",
+    "typescript": "^4.9.5",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/express": "^4.17.17",
+    "@types/lodash": "^4.14.182",
+    "@types/multer-s3": "^3.0.0",
+    "@types/nodemon": "^1.19.2",
+    "@types/swagger-ui-express": "^4.1.3",
+    "prettier": "2.8.8",
+    "tsc-alias": "^1.8.5",
+    "tsconfig-paths": "^4.2.0",
+    "tscpaths": "^0.0.9"
+  },
+  "description": "ecommerce+mongo+swagger"
+}

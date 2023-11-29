@@ -1,0 +1,61 @@
+<header>
+  <link rel="stylesheet" href="/main.css" />
+</header>
+<main>
+  <section class="login">
+    <div class="side1">
+      <figure>
+        <img src="logo.png" alt="" />
+      </figure>
+    </div>
+    <div class="side2">
+      <div class="wel">
+        <h3>Create Your Account</h3>
+      </div>
+
+      <% regErrors.forEach(function(err) { %>
+        <div class="error">
+            <p><%= err %></p>
+        </div>
+    <% }) %>
+
+      <div>
+        <form class="auth__form" action="/register" method="POST">
+          <div class="nm">
+            <div>
+              <label for="email">First Name</label>
+              <input name="firstname" type="text" required />
+            </div>
+
+            <div>
+              <label for="email">Last Name</label>
+              <input name="lastname" type="text" required />
+            </div>
+          </div>
+
+          <div>
+            <label for="email">Email Address</label>
+            <input name="email" type="email" required />
+          </div>
+
+          <div class="nm">
+            <div>
+              <label for="password">Choose a Password</label>
+              <input name="password" type="password" required />
+            </div>
+
+            <div>
+              <label for="password">Confirm Password</label>
+              <input name="confirmPassword" type="password" required />
+            </div>
+          </div>
+
+          <div class="for">
+            <button class="button1">Sign Up</button>
+            <p>Already have an account? <a href="/sign-in">Sign In</a></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>

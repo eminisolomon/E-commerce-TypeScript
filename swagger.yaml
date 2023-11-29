@@ -1,0 +1,1118 @@
+openapi: 3.1.0
+info:
+  title: BarkAndShaw API
+  description: API for Ecommerce
+  version: 1.0.0
+  contact:
+    name: Solomon Olatunji
+    email: realsolomon@outlook.com
+
+servers:
+  - url: /api/v1
+    description: Development server
+
+tags:
+  - name: Authentication
+    description: Operations related to Authentication
+  - name: Users
+    description: Operations related to users
+  - name: Products
+    description: Operations related to products
+  - name: Coupons
+    description: Operations related to coupons
+  - name: Banners
+    description: Operations related to banners
+  - name: Categories
+    description: Operations related to categories
+  - name: Reviews
+    description: Operations related to reviews
+  - name: Orders
+    description: Operations related to orders
+  - name: Wishlist
+    description: Operations related to wishlist
+
+paths:
+  /products:
+    get:
+      tags:
+        - Products
+      summary: Get all products
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+
+    post:
+      summary: Add a new product
+      tags:
+        - Products
+      security:
+        - BearerAuth: []
+      requestBody:
+        description: Add a new product
+        required: true
+        schema:
+          $ref: "#/definitions/Product"
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        201:
+          description: "Created"
+        400:
+          description: "Required Fields"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+
+  /products/{id}:
+    get:
+      tags:
+        - Products
+      summary: Get a product by ID
+      parameters:
+        - name: id
+          in: path
+          description: ID of the product to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+
+    patch:
+      summary: Update a product by ID
+      tags:
+        - Products
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: ID of the product to update
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update product details
+        required: true
+        schema:
+          $ref: "#/definitions/Product"
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        201:
+          description: "Created"
+        400:
+          description: "Required Fields"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+
+    delete:
+      summary: Delete a product by ID
+      tags:
+        - Products
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: ID of the product to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+
+  /coupons:
+    get:
+      tags:
+        - Coupons
+      summary: Get all coupons
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+
+    post:
+      summary: Create a new coupon
+      tags:
+        - Coupons
+      security:
+        - BearerAuth: []
+      requestBody:
+        description: Create a new coupon
+        required: true
+        schema:
+          $ref: "#/definitions/Coupon"
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        201:
+          description: "Created"
+        400:
+          description: "Required Fields"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+
+  /coupons/{id}:
+    get:
+      tags:
+        - Coupons
+      summary: Get a coupon by ID
+      parameters:
+        - name: id
+          in: path
+          description: ID of the coupon to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+
+    patch:
+      summary: Update a coupon by ID
+      tags:
+        - Coupons
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: ID of the coupon to update
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update coupon details
+        required: true
+        schema:
+          $ref: "#/definitions/Coupon"
+      responses:
+        200:
+          description: "OK"
+        404:
+          description: "Not Found"
+        500:
+          description: "Bad Request"
+        201:
+          description: "Created"
+        400:
+          description: "Required Fields"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+
+    delete:
+      summary: Delete a coupon by ID
+      tags:
+        - Coupons
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: ID of the coupon to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+
+  /banners:
+    get:
+      tags:
+        - Banners
+      summary: Get all banners
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+
+    post:
+      summary: Create a new banner
+      tags:
+        - Banners
+      security:
+        - BearerAuth: []
+      requestBody:
+        description: Create a new banner
+        required: true
+        schema:
+          $ref: "#/definitions/Banner"
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        201:
+          description: "Created"
+        400:
+          description: "Required Fields"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+
+  /banners/{id}:
+    get:
+      tags:
+        - Banners
+      summary: Get a banner by ID
+      parameters:
+        - name: id
+          in: path
+          description: ID of the banner to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+
+    patch:
+      summary: Update a banner by ID
+      tags:
+        - Banners
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: ID of the banner to update
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update banner details
+        required: true
+        schema:
+          $ref: "#/definitions/Banner"
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        201:
+          description: "Created"
+        400:
+          description: "Required Fields"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+
+    delete:
+      summary: Delete a banner by ID
+      tags:
+        - Banners
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: ID of the banner to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+
+  /auth/register:
+    post:
+      summary: User registration
+      tags:
+        - Authentication
+      requestBody:
+        description: User registration details
+        required: true
+        schema:
+          $ref: "#/definitions/UserRegistration"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "Bad Request"
+        409:
+          description: "Conflict"
+
+  /auth/login:
+    post:
+      summary: User login
+      tags:
+        - Authentication
+      requestBody:
+        description: User login details
+        required: true
+        schema:
+          $ref: "#/definitions/UserLogin"
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    description: "JWT access token"
+                  token_type:
+                    type: string
+                    description: "Token type"
+                  expires_in:
+                    type: integer
+                    description: "Access token expiration time in seconds"
+        400:
+          description: "Bad Request"
+        401:
+          description: "Unauthorized"
+
+  /auth/logout:
+    post:
+      summary: User logout
+      tags:
+        - Authentication
+      responses:
+        200:
+          description: "OK"
+        401:
+          description: "Unauthorized"
+
+  /auth/forgetPassword:
+    post:
+      summary: Forget Password
+      tags:
+        - Authentication
+      requestBody:
+        description: User email for password reset
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/UserForgetPassword"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "Bad Request"
+        404:
+          description: "Not Found"
+
+  /users:
+    get:
+      summary: Get all users
+      tags:
+        - Users
+      responses:
+        200:
+          description: "OK"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+
+  /users/{id}:
+    get:
+      summary: Get a user by ID
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          description: ID of the user to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "OK"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+
+  /updateUser:
+    patch:
+      summary: Update the current user
+      tags:
+        - Users
+      security:
+        - BearerAuth: []
+      requestBody:
+        description: Update user details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/UserUpdate"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "Bad Request"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+
+  /updateUserPassword:
+    patch:
+      summary: Update the password of the current user
+      tags:
+        - Users
+      security:
+        - BearerAuth: []
+      requestBody:
+        description: Update user password
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/UpdatePassword"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "Bad Request"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+
+  /category:
+    get:
+      tags:
+        - Categories
+      summary: Get all categories
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+
+    post:
+      summary: Create a new category
+      tags:
+        - Categories
+      security:
+        - BearerAuth: []
+      requestBody:
+        description: Create a new category
+        required: true
+        schema:
+          $ref: "#/definitions/Category"
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        201:
+          description: "Created"
+        400:
+          description: "Required Fields"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+
+  /category/{id}:
+    get:
+      tags:
+        - Categories
+      summary: Get a category by ID
+      parameters:
+        - name: id
+          in: path
+          description: ID of the category to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+
+    patch:
+      summary: Update a category by ID
+      tags:
+        - Categories
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: ID of the category to update
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update category details
+        required: true
+        schema:
+          $ref: "#/definitions/Category"
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        201:
+          description: "Created"
+        400:
+          description: "Required Fields"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+
+    delete:
+      summary: Delete a category by ID
+      tags:
+        - Categories
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: ID of the category to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+
+  /reviews:
+    get:
+      tags:
+        - Reviews
+      summary: Get all reviews
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+
+    post:
+      summary: Create a new review
+      tags:
+        - Reviews
+      security:
+        - BearerAuth: []
+      requestBody:
+        description: Create a new review
+        required: true
+        schema:
+          $ref: "#/definitions/Review"
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        201:
+          description: "Created"
+        400:
+          description: "Required Fields"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+
+  /reviews/{id}:
+    get:
+      tags:
+        - Reviews
+      summary: Get a review by ID
+      parameters:
+        - name: id
+          in: path
+          description: ID of the review to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+
+    patch:
+      summary: Update a review by ID
+      tags:
+        - Reviews
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: ID of the review to update
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update review details
+        required: true
+        schema:
+          $ref: "#/definitions/Review"
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        201:
+          description: "Created"
+        400:
+          description: "Required Fields"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+
+    delete:
+      summary: Delete a review by ID
+      tags:
+        - Reviews
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: ID of the review to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+
+  /orders:
+    post:
+      tags:
+        - Orders
+      summary: Create a new order
+      security:
+        - BearerAuth: []
+      requestBody:
+        description: Create a new order
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/Order"
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        201:
+          description: "Created"
+        400:
+          description: "Required Fields"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+
+    get:
+      tags:
+        - Orders
+      summary: Get all orders (Admin only)
+      security:
+        - BearerAuth: []
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+
+  /orders/showUserOrders:
+    get:
+      tags:
+        - Orders
+      summary: Get the current user's orders
+      security:
+        - BearerAuth: []
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+
+  /orders/{id}:
+    get:
+      tags:
+        - Orders
+      summary: Get a single order by ID
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: ID of the order to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+
+    patch:
+      tags:
+        - Orders
+      summary: Update an order by ID
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: ID of the order to update
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update order details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/Order"
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+
+  /wishlist/{userId}:
+    post:
+      tags:
+        - Wishlist
+      summary: Add to wishlist
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          description: ID of the user to add to wishlist
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Product ID to add to wishlist
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/ProductWishlist"
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        201:
+          description: "Created"
+        400:
+          description: "Required Fields"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+
+    delete:
+      tags:
+        - Wishlist
+      summary: Remove from wishlist
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          description: ID of the user to remove from wishlist
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Product ID to remove from wishlist
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/ProductWishlist"
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+
+    get:
+      tags:
+        - Wishlist
+      summary: Get wishlist
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          description: ID of the user to get the wishlist
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "OK"
+        409:
+          description: "Conflict"
+        500:
+          description: "Bad Request"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+definitions:
+  Product:
+
+  Coupon:
+
+  Banner:
+
+  UserRegistration:
+
+  UserLoginDTO:
+
+  UserUpdate:
+
+  UpdatePassword:
+
+  Category:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+
+  Review:
+    type: object
+    properties:
+      id:
+        type: string
+      productId:
+        type: string
+      userId:
+        type: string
+      rating:
+        type: number
+      comment:
+        type: string
+      timestamp:
+        type: string
+  Order:
+    type: object
+    properties:
+      id:
+        type: string
+      productId:
+        type: string
+      userId:
+        type: string
+      quantity:
+        type: integer
+      totalAmount:
+        type: number
+      status:
+        type: string
+      timestamp:
+        type: string
+
+  ProductWishlist:
+    type: object
+    properties:
+      productId:
+        type: string
+
+  UserForgetPassword:
+    type: object
+    properties:
+      email:
+        type: string
