@@ -44,7 +44,7 @@ E-commerce-TypeScript is a TypeScript-based e-commerce project designed to provi
 4. Start the development server:
 
    ```bash
-   npm run start
+   npm run dev
 
 ### Contributing
 
@@ -52,4 +52,4 @@ Contributions are welcome! If you would like to contribute, please reach out via
 
 ### License
 
-This project is licensed under the MIT License.
+This project is licensed under the ISC License.
